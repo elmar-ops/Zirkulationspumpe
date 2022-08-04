@@ -26,8 +26,8 @@
 #define MQTT_PUB_INFO "esp/pump/info"
 
 const int hysterese_cel = 2;
-const int runtimer_min = 1; //4
-const int lock_time_min = 2; //60
+const int runtimer_min = 4; //4
+const int lock_time_min = 60; //60
 const int force_pump_hour = 8; // pump every 8h!
 
 unsigned long prevTempMillis = 0;           // previous temperature measurement timer
@@ -156,7 +156,6 @@ void loop() {
     Serial.println("FORCE circulation!");
     uint16_t packetIdPub1 = mqttClient.publish(MQTT_PUB_INFO, 1, true, "FORCE circulation!"); 
     zirk = true;  
-    prevZirkMillis = currentMillis;  
     prevForceMillis = currentMillis;
   }
 
