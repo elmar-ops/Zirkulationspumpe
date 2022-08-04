@@ -184,10 +184,11 @@ void loop() {
   } 
   
   // disable lock
-  if ((currentMillis - prevLockMillis >= lock_time_min * 1000 * 60) and locked == true){   
+  if ((currentMillis - prevLockMillis >= lock_time_min * 1000 * 60) and locked == true){ 
+    prevLockMillis = currentMillis;  
     Serial.println("Turn off lock");  
     uint16_t packetIdPub1 = mqttClient.publish(MQTT_PUB_INFO, 1, true, "Turn off lock"); 
-    locked == false;
+    locked = false;
   }
 
   if (zirk == true ) {
